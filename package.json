@@ -1,0 +1,22 @@
+{
+  "name": "redshift",
+  "version": "1.0.0",
+  "description": "Project Redshift planet search",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnolan3/redshift.git"
+  },
+  "author": "Connor Nolan",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/cnolan3/redshift/issues"
+  },
+  "homepage": "https://github.com/cnolan3/redshift#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
