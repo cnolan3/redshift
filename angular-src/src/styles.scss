@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootswatch/dist/simplex/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootswatch/dist/simplex/bootswatch";
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,900);
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 130px;
+}
+
+.blog-header {
+  line-height: 1;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'PT Sans Narrow';
+	font-weight: 800;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+p {
+	color: #231900;
+	font-family: 'PT Sans';
+	font-size: 34px;
+	font-weight: 500;
+	max-width: 650px;
+}
+
+a {
+	color: #231900;	
+	font-family: 'PT Sans';
+	font-size: 17px;
+}
+
+a:hover {
+
+}

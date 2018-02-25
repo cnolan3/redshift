@@ -1,0 +1,101 @@
+<div class="container">
+  <!-- header -->
+  <div class="blog-header">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-3 pt-1 align-items-center">
+        <a class="text-muted" [routerLink]="['/']">Home</a>
+      </div>
+      <div class="col-6 text-center align-items-center">
+        <h1 class="blog-header-logo text-dark" href="#"><strong>Project Redshift</strong></h1>
+      </div>
+      <div class="col-3 d-flex justify-content-end align-items-center">
+        <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#loginModal">Get Started</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-center">
+      <a class="px-2 px-md-5 text-muted" [routerLink]="['/info']">Info</a>
+      <a class="px-2 px-md-5 text-muted" href="#">Planets</a>
+      <a class="px-2 px-md-5 text-muted" href="#">News</a>
+      <a class="px-2 px-md-5 text-muted" href="#">Forum</a>
+    </nav>
+  </div>
+
+  <!-- login modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark jumbo-bg">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 font-italic font-weight-bold">Help us find our next home in the cosmos.</h1>
+      <p class="lead my-3 text-white"><i>Project Redshift</i> continues the search for new planets using a sophisticated, accessible A.I. that needs your help to learn how to spot unexplored worlds.</p>
+      <a class="btn btn-primary btn-lg" [routerLink]="['/info']">More Info</a>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row px-5 mt-4 justify-content-between">
+    <div class="col-12 col-md-4 text-center text-md-left">
+      <h4>3,000 Users</h4>
+    </div>
+    <div class="col-12 col-md-4 text-center text-md-center">
+      <h4>2,000 Images</h4>
+    </div>
+    <div class="col-12 col-md-4 text-center text-md-right">
+      <h4>1,000 Confirmed</h4>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-primary">Weekly Update</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">New Planets</a>
+          </h3>
+          <div class="mb-1 text-muted">Nov 12</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#">Continue reading</a>
+        </div>
+        <img class="card-img-right flex-auto d-none d-md-block img-fluid" src="../../../assets/post-23216-0-18054100-1411283051.jpg" alt="Card image cap">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-success">Space News</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">Titan News</a>
+          </h3>
+          <div class="mb-1 text-muted">Nov 11</div>
+          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          <a href="#">Continue reading</a>
+        </div>
+        <img class="card-img-right flex-auto d-none d-md-block img-fluid" src="../../../assets/3CF83A09-2454-4D74-A86D95B97AD4F8EC.jpg" alt="Card image cap">
+      </div>
+    </div>
+  </div>
+
+</div>

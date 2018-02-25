@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/cnolan3/redshift/issues"
   },
-  "homepage": "https://github.com/cnolan3/redshift#readme",
-  "dependencies": {
-    "express": "^4.16.2"
-  }
+  "homepage": "https://github.com/cnolan3/redshift#readme"
 }
