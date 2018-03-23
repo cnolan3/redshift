@@ -22,35 +22,20 @@
   </div>
   <hr>
 
-  <div class="row mb-2">
-    <div class="col-md-6">
+  <div class="row">
+    <div *ngFor="let article of articles; let color of colors" class="col-md-6">
       <div class="card flex-md-row mb-4 box-shadow h-md-250">
         <div class="card-body d-flex flex-column align-items-start">
-          <strong class="d-inline-block mb-2 text-primary">Weekly Update</strong>
+          <strong class="d-inline-block mb-2">{{ article.category }}</strong>
           <h3 class="mb-0">
-            <a class="text-dark" href="#">New Planets</a>
+            <a class="text-dark" [routerLink]="['article', article.id]">{{ article.title }}</a>
           </h3>
-          <div class="mb-1 text-muted">Nov 12</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continue reading</a>
+          <div class="mb-1 text-muted">{{ article.date }}</div>
+          <p class="card-text mb-auto">{{ article.body.substring(0, 100) }}...</p>
+          <a [routerLink]="['article', article.id]">Continue reading</a>
         </div>
-        <img class="card-img-right flex-auto d-none d-md-block img-fluid" src="../../../assets/post-23216-0-18054100-1411283051.jpg" alt="Card image cap">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card flex-md-row mb-4 box-shadow h-md-250">
-        <div class="card-body d-flex flex-column align-items-start">
-          <strong class="d-inline-block mb-2 text-success">Space News</strong>
-          <h3 class="mb-0">
-            <a class="text-dark" href="#">Titan News</a>
-          </h3>
-          <div class="mb-1 text-muted">Nov 11</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#">Continue reading</a>
-        </div>
-        <img class="card-img-right flex-auto d-none d-md-block img-fluid" src="../../../assets/3CF83A09-2454-4D74-A86D95B97AD4F8EC.jpg" alt="Card image cap">
+        <img class="card-img-right img-fluid d-none d-lg-block" [src]="article.photo" style="width: 500px;" alt="Card image cap">
       </div>
     </div>
   </div>
-
 </div>

@@ -15,10 +15,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterLoginComponent } from './components/register-login/register-login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ArticleComponent } from './components/article/article.component';
 
 
 import { AuthService } from './services/auth.service';
-import { StatsService } from './services/stats.service';
+import { DataService } from './services/data.service';
 import { ValidateService } from './services/validate.service';
 
 
@@ -29,7 +30,8 @@ import { environment } from '../environments/environment';
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'info', component: InfoComponent},
-  {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]}
+  {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path:'article/:id', component: ArticleComponent }
 ]
 
 export function fact() {
@@ -44,7 +46,8 @@ export function fact() {
     FooterComponent,
     RegisterLoginComponent,
     NavbarComponent,
-    ProfileComponent
+    ProfileComponent,
+    ArticleComponent
   ],
   imports: [
     FlashMessagesModule,
@@ -63,7 +66,7 @@ export function fact() {
   providers: [
     AuthService,
     AuthGuard,
-    StatsService,
+    DataService,
     ValidateService
   ],
   bootstrap: [AppComponent],

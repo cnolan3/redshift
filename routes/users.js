@@ -28,9 +28,9 @@ const config = require(__dirname + '/../config/config.json')[env];
  * @apiSuccess (201) {Number}  user.id       user database id
  * @apiSuccess (201) {String}  user.username username
  *
- * @apiError (400) IncompleteUserObject  the user data that whas sent is incomplete
- * @apiError (400) UserAlreadyExits user with requested username already exists
- * @apiError (500) Error                 database error
+ * @apiError (400) IncompleteUserObject the user data that whas sent is incomplete
+ * @apiError (400) UserAlreadyExits     user with requested username already exists
+ * @apiError (500) Error                database error
 **/
 router.post('/register', (req, res, next) => {
     /// check of the username already exists
@@ -96,9 +96,9 @@ router.post('/register', (req, res, next) => {
  * @apiSuccess {Number}  user.id       user database id
  * @apiSuccess {String}  user.username username
  *
- * @apiError (400) UserNotFound              requested username does not belong to any user
+ * @apiError (404) UserNotFound              requested username does not belong to any user
  * @apiError (400) IncompleteUserObject user login information incomplete
- * @apiError (400) WrongPassword             incorrect password used
+ * @apiError (401) WrongPassword             incorrect password used
  * @apiError (500) Error                     database error
 **/
 router.post('/authenticate', (req, res, next) => {
@@ -111,7 +111,7 @@ router.post('/authenticate', (req, res, next) => {
         attributes: ['id', 'password']
     }).then((user) => {
         if(!user) {
-            return res.status(400).send('UserNotFound');
+            return res.status(404).send('UserNotFound');
         }
 
         /// check for complete user object
@@ -134,7 +134,7 @@ router.post('/authenticate', (req, res, next) => {
                 });
             }
             else {
-                return res.status(400).send('WrongPassword');
+                return res.status(401).send('WrongPassword');
             }
         });
     }).catch((err) => {
