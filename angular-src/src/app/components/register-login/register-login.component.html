@@ -1,0 +1,124 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ modeName }}</h5>
+  <button type="button" class="close" (click)="activeModal.close('Close click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (submit)="onSubmitButton()">
+  <div class="modal-body">
+
+    <ngx-flash-messages></ngx-flash-messages>
+
+    <div *ngIf="getMode()">
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="usernameIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="usernameIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="passwordIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="passwordIcon">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!getMode()">
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="firstnameIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="text" [(ngModel)]="firstname" name="firstname" class="form-control" placeholder="First Name" aria-label="First Name" aria-describedby="firstnameIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="lastnameIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="text" [(ngModel)]="lastname" name="lastname" class="form-control" placeholder="Last Name" aria-label="Last Name" aria-describedby="lastnameIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="emailIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="text" [(ngModel)]="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="emailIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="usernameIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="usernameIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="passwordIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="passwordIcon">
+          </div>
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <div class="col">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-addon" id="passwordConfIcon">
+                <i class="fa fa-user fa-fw fa-lg fa-margin-top fa-margin-x" aria-hidden="true"></i>
+              </span>
+            </div> 
+            <input type="password" [(ngModel)]="passwordConf" name="passwordConf" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="passwordConfIcon">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="container-fluid">
+      <div class="row justify-content-between">
+        <button class="btn btn-outline-dark" type="button" (click)="switchMode()">{{ opMode }}</button>
+        <button class="btn btn-primary" type="submit">submit</button>
+      </div>
+    </div>
+  </div>
+</form>

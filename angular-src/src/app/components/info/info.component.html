@@ -1,3 +1,29 @@
-<p>
-  info works!
-</p>
+<div class="container">
+  <p>
+    Project Redshift is a service deticated to assisting the search for planets outside of our own solar system. It does this by gathering images of stars from citizen scientists (you) and analyzing them using an A.I. that is trained to pick out the most likely candidates for exoplanets. Researchers can then use this data to study our cosmic neighbors mor closely.
+  </p>
+  <p>
+    The process includes three steps: star classification, photometric analysis, and exoplanet identification.
+  </p>
+  <h1>
+    Star Classification
+  </h1>
+  <p>
+    The star classification step taked the raw image submitted to the site and attempts to pick out stars within the image using a convolutional neural network. If the neural net doesn't get everything right (no one's perfect) you can point it in the right direction by selecting the stars within the image for it.
+  </p>
+  <h1>
+    Photometric Analysis
+  </h1>
+  <p>
+    Photometry is the process of calculating how much light is emitted by an object in a photograph. In this case, we are using it to determine how bright each star within a photo is. We have developed an in-browser tool that should be able to do this without any help from the user. All you need to do is submit a set of raw, consecutive photographs of the same area of the night sky (there is no minimum but at least 10-15 is recommended) and the program should generate a 'light-curve', or graph of star brightness, for each star in the set. You could stop here if all you wanted was the photometric data of your image set, but why not donate your data to the last step in our process?
+  </p>
+  <h1>
+    Exoplanet Identification
+  </h1>
+  <p>
+    Unlike the previous two steps, this one will not give you immediate results, but you would be participating in an extremely important global effort to find what could possibly be the next home for humanity! In the exoplanet identification phase, the photometric data from the previous step is added to an ever-growing database of information and is analyzed using yet another neural network, a recurrent neural net (or more specifically, an LSTM, Long Short Term Memory). This type of neural net can identify patterns over time, which is perfect for our needs. Every contribution adds to our database and makes it more likely that a new exoplanet will be found, so we would love your help!
+  </p>
+  <p>
+    After a potential exoplanet is found, it will be added to a publically available list for researchers to look through and study more closely. The hope is that with the help of the worlds amatuer astronomers, we will be able to map all of the exoplanets in the entire night sky.
+  </p>
+</div>

@@ -28,13 +28,13 @@ const config = require(__dirname + '/../config/config.json')[env];
  * @apiSuccess (201) {Number}  user.id       user database id
  * @apiSuccess (201) {String}  user.username username
  *
- * @apiError (400) IncompleteUserObject the user data that whas sent is incomplete
+ * @apiError (400) IncompleteUserObject  the user data that whas sent is incomplete
  * @apiError (400) UserAlreadyExits user with requested username already exists
- * @apiError (500) Error database error
+ * @apiError (500) Error                 database error
 **/
 router.post('/register', (req, res, next) => {
     /// check of the username already exists
-    models.user.findOne({
+    models.users.findOne({
         where: { username: req.body.username },
         attributes: ['id'],
     }).then((user) => {
@@ -57,7 +57,7 @@ router.post('/register', (req, res, next) => {
             }
             
             /// add new user
-            models.user.addUser(newUser, (user) => {
+            models.users.addUser(newUser, (user) => {
                 const token = jwt.sign(user.toJSON(), config.secret, { expiresIn: 604800 });
 
                 res.status(201).json({
@@ -96,25 +96,31 @@ router.post('/register', (req, res, next) => {
  * @apiSuccess {Number}  user.id       user database id
  * @apiSuccess {String}  user.username username
  *
- * @apiError (401) UserNotFound requested username does not belong to any user
- * @apiError (401) WrongPassword incorrect password used
- * @apiError (500) Error database error
+ * @apiError (400) UserNotFound              requested username does not belong to any user
+ * @apiError (400) IncompleteUserObject user login information incomplete
+ * @apiError (400) WrongPassword             incorrect password used
+ * @apiError (500) Error                     database error
 **/
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
 
     /// look for username
-    models.user.findOne({ 
+    models.users.findOne({ 
         where: { username: username }, 
         attributes: ['id', 'password']
     }).then((user) => {
         if(!user) {
-            return res.status(401).send('UserNotFound');
+            return res.status(400).send('UserNotFound');
         }
 
+        /// check for complete user object
+        if(!req.body.username ||
+           !req.body.password)
+            return res.status(400).send('IncompleteUserObject');
+
         /// validate hashed password
-        models.user.comparePassword(password, user.password, (isMatch) => {
+        models.users.comparePassword(password, user.password, (isMatch) => {
             if(isMatch) {
                 const token = jwt.sign(user.toJSON(), config.secret, { expiresIn: 604800 });
 
@@ -128,7 +134,7 @@ router.post('/authenticate', (req, res, next) => {
                 });
             }
             else {
-                return res.status(401).send('WrongPassword');
+                return res.status(400).send('WrongPassword');
             }
         });
     }).catch((err) => {

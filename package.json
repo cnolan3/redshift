@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Project Redshift planet search",
   "apidoc": {
-      "title": "Project Redshift api doc"
+    "title": "Project Redshift api doc"
   },
   "main": "app.js",
   "scripts": {

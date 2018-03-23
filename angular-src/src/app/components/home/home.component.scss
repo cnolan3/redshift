@@ -1,8 +1,75 @@
+
 .jumbo-bg {
 	background: url('../../../assets/nature-night-sky-milky-way-810890.jpg') repeat-y center top fixed;
-	background-size: 100% 80%;
+	background-size: 1500px 900px;
 }
 
 p {
 	font-size: 24px;
+}
+
+button {
+  font-size: 0.8em;
+}
+
+@media (min-width: 48em) {
+  button {
+    font-size: 1em;
+  }
+}
+
+.card {
+  p {
+    font-size: 1.3em;
+  }
+
+  @media (min-width: 48em) {
+    p {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.jumbotron {
+  h1 {
+    font-size: 1.85em;
+  }
+
+  p {
+    font-size: 1.4em;
+  }
+
+  a {
+    font-size: 0.9em;
+  }
+
+  @media (min-width: 48em) {
+    h1 {
+      font-size: 2.441em;
+    }
+
+    p {
+      font-size: 1.6em;
+    }
+
+    a {
+      font-size: 1.2em;
+    }
+  }
+
+  @media (min-width: 62em) {
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  @media (min-width: 75em) {
+    h1 {
+      font-size: 4em;
+    }
+
+    p {
+      font-size: 1.9em;
+    }
+  }
 }

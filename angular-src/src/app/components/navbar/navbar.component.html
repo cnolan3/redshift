@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="blog-header">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-3 pt-1 align-items-center">
+        <a class="text-muted" [routerLink]="['/']">Home</a>
+      </div>
+      <div class="col-6 text-center align-items-center">
+        <h1 class="blog-header-logo text-dark" href="#"><strong>Project Redshift</strong></h1>
+      </div>
+      <div class="col-3 d-flex justify-content-end align-items-center">
+				<div *ngIf="!loggedIn()">
+					<button class="btn btn-outline-primary" type="button" (click)="open()">Get Started</button>
+				</div>
+				<div *ngIf="loggedIn()">
+					<div class="row">
+						<div class="col-sm-6">
+							<button class="btn mb-2 mb-sm-0 btn-outline-dark" type="button" (click)="logOut()">Log Out</button>
+						</div>
+						<div class="col-sm-6">
+							<button class="btn btn-outline-info" type="button" [routerLink]="['/profile']">Profile</button>
+						</div>
+					</div>
+				</div>
+			</div>
+    </div>
+  </div>
+
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-center">
+      <a class="px-2 px-md-5 text-muted" [routerLink]="['/info']">Info</a>
+      <a class="px-2 px-md-5 text-muted" href="#">Planets</a>
+      <a class="px-2 px-md-5 text-muted" href="#">News</a>
+      <a class="px-2 px-md-5 text-muted" href="#">Forum</a>
+    </nav>
+  </div>
+
+</div>

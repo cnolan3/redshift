@@ -1,0 +1,10 @@
+button {
+  font-size: 0.8em;
+}
+
+@media (min-width: 48em) {
+  button {
+    font-size: 1em;
+  }
+}
+

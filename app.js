@@ -10,6 +10,7 @@ const app = express();
 
 const users = require('./routes/users');
 const admin = require('./routes/admin');
+const stats = require('./routes/stats');
 
 const port = 4000;
 
@@ -34,6 +35,7 @@ require('./config/passport')(passport);
 // routes
 app.use('/users', users);
 app.use('/admin', admin);
+app.use('/stats', stats);
 
 app.disable('etag');
 
