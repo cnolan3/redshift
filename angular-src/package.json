@@ -27,6 +27,7 @@
     "bootstrap": "^4.0.0",
     "bootswatch": "^4.0.0",
     "core-js": "^2.4.1",
+    "deeplearn": "^0.5.1",
     "jquery": "^3.3.1",
     "ngx-flash-messages": "^1.0.4",
     "popper.js": "^1.12.9",

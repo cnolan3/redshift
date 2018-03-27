@@ -108,7 +108,7 @@ router.post('/authenticate', (req, res, next) => {
     /// look for username
     models.users.findOne({ 
         where: { username: username }, 
-        attributes: ['id', 'password']
+        attributes: ['id', 'username', 'firstname', 'lastname', 'email', 'password']
     }).then((user) => {
         if(!user) {
             return res.status(404).send('UserNotFound');
@@ -129,7 +129,10 @@ router.post('/authenticate', (req, res, next) => {
                     token: 'JWT' + token,
                     user: {
                         id: user.id,
-                        username: user.username
+                        username: user.username,
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        email: user.email
                     }
                 });
             }

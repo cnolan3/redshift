@@ -31,10 +31,10 @@ export class DataService {
   /**
    * get latest articles
   **/
-  getLatestArts(num) {
+  getLatestArts(num, off) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(environment.apiUrl + '/data/latestart?num=' + num, {headers: headers})
+    return this.http.get(environment.apiUrl + '/data/latestart?num=' + num + '&off=' + off, {headers: headers})
       .map(res => res.json());
   }
 }

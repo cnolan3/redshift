@@ -16,6 +16,10 @@ import { RegisterLoginComponent } from './components/register-login/register-log
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ArticleComponent } from './components/article/article.component';
+import { SubmitComponent } from './components/submit/submit.component';
+import { ForumComponent } from './components/forum/forum.component';
+import { NewsComponent } from './components/news/news.component';
+import { PlanetsComponent } from './components/planets/planets.component';
 
 
 import { AuthService } from './services/auth.service';
@@ -31,7 +35,11 @@ const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'info', component: InfoComponent},
   {path:'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path:'article/:id', component: ArticleComponent }
+  {path:'submit', component: SubmitComponent, canActivate: [AuthGuard]},
+  {path:'article/:id', component: ArticleComponent},
+  {path:'forum', component: ForumComponent},
+  {path:'news', component: NewsComponent},
+  {path:'planets', component: PlanetsComponent}
 ]
 
 export function fact() {
@@ -47,7 +55,11 @@ export function fact() {
     RegisterLoginComponent,
     NavbarComponent,
     ProfileComponent,
-    ArticleComponent
+    ArticleComponent,
+    SubmitComponent,
+    ForumComponent,
+    NewsComponent,
+    PlanetsComponent
   ],
   imports: [
     FlashMessagesModule,

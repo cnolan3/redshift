@@ -1,0 +1,14 @@
+<div class="container">
+  <canvas id="myCanvas" width="1000" height="500" style="border: 1px solid #000000;"></canvas>
+
+  <div class="form-group">
+    <label for="submitFile">Choose an image to upload</label>
+    <input type="file" class="form-control-file" id="submitFile" (change)="fileInput($event.target.files)" multiple>
+  </div>
+
+  <div class="btn-group" role="group" aria-label="basic">
+    <button class="btn btn-primary" type="button" (click)="changeImg(-1)">Previous</button>
+    <button class="btn btn-primary" type="button">{{ imgNum + 1 }}</button>
+    <button class="btn btn-primary" type="button" (click)="changeImg(1)">Next</button>
+  </div>
+</div>

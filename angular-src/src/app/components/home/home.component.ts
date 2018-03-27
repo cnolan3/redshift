@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       this.confirmed = data.confirmed;
     });
 
-    this.dataService.getLatestArts(2).subscribe((data) => {
+    this.dataService.getLatestArts(2, 0).subscribe((data) => {
       this.articles = data.articles;
     });
   }

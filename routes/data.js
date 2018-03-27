@@ -7,11 +7,11 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 
 /**
- * @api {get} /data/articles?id get an article from the database
+ * @api {get} /data/articles?id get an article by id
  * @apiName articles
- * @apiGroup articles
+ * @apiGroup data
  *
- * @apiDescription gets an article from the database
+ * @apiDescription gets an article by id from the database
  *
  * @apiParam {Number} id id number of article
  *
@@ -39,26 +39,64 @@ router.get('/articles', (req, res, next) => {
 });
 
 /**
- * @api {get} /data/latestart:num get the latest num articles
- * @apiName latestArticles
- * @apiGroup articles
+ * @api {get} /data/articletitle?title search articles by title
+ * @apiName articleTitle
+ * @apiGroup data
  *
- * @apiDescription get the latest articles from the database
+ * @apiDescription searches articles by title
+ *
+ * @apiParam {String} title title to search by
+ *
+ * @apiSuccess {Object[]} articles          array of articles
+ * @apiSuccess {Number}   articles.id       article id number
+ * @apiSuccess {String}   articles.category article category
+ * @apiSuccess {String}   articles.title    article title
+ * @apiSuccess {String}   articles.author   article author
+ * @apiSuccess {String}   articles.body     article body
+ *
+ * @apiError (404) NoArticles articles do not exist
+ * @apiError (500) Error      server error
+**/
+router.get('/articletitle', (req, res, next) => {
+    let qTitle = req.query.title;
+    models.articles.findAll({
+        where: { title: { $contains: qTitle } },
+        attributes: ['id', 'category', 'title', 'date', 'author', 'body', 'photo', 'createdAt']
+    }).then((data) => {
+        if(data)
+            return res.status(200).json({ articles: data });
+        else
+            return res.status(404).send('NoArticles');
+    }).catch((err) => {
+        return res.status(500).send('Error');
+    });
+});
+
+/**
+ * @api {get} /data/latestart?num&off get the latest articles
+ * @apiName latestArticles
+ * @apiGroup data
+ *
+ * @apiDescription get the latest 'num' articles offset by 'off' from the database
  *
  * @apiParam {Number} num number of articles to get
+ * @apiParam {Number} off offset for search
  *
- * @apiSuccess {Number} id       article id number
- * @apiSuccess {String} category article category
- * @apiSuccess {String} title    article title
- * @apiSuccess {String} author   article author
- * @apiSuccess {String} body     article body
+ * @apiSuccess {Object[]} articles          array of articles
+ * @apiSuccess {Number}   articles.id       article id number
+ * @apiSuccess {String}   articles.category article category
+ * @apiSuccess {String}   articles.title    article title
+ * @apiSuccess {String}   articles.author   article author
+ * @apiSuccess {String}   articles.body     article body
  *
  * @apiError (404) NoArticles articles do not exist
  * @apiError (500) Error      server error
 **/
 router.get('/latestart', (req, res, next) => {
     let num = req.query.num;
+    let off = req.query.off;
     models.articles.findAll({
+        offset: off,
         limit: num,
         order: [ [ 'createdAt', 'DESC' ] ],
         attributes: ['id', 'category', 'title', 'date', 'author', 'body', 'photo', 'createdAt']
@@ -75,7 +113,7 @@ router.get('/latestart', (req, res, next) => {
 /**
  * @api {get} /data/stats get stats from the database
  * @apiName stats
- * @apiGroup stats
+ * @apiGroup data
  *
  * @apiDescription Gets system stats.
  *

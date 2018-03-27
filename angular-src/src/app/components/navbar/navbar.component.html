@@ -13,24 +13,27 @@
 				</div>
 				<div *ngIf="loggedIn()">
 					<div class="row">
-						<div class="col-sm-6">
-							<button class="btn mb-2 mb-sm-0 btn-outline-dark" type="button" (click)="logOut()">Log Out</button>
+						<div class="col-sm-4">
+							<button class="btn my-2 my-sm-0 mx-1 btn-outline-dark" type="button" (click)="logOut()">Log Out</button>
 						</div>
-						<div class="col-sm-6">
-							<button class="btn btn-outline-info" type="button" [routerLink]="['/profile']">Profile</button>
+						<div class="col-sm-4">
+							<button class="btn mb-2 mb-sm-0 mx-1 btn-outline-info" type="button" [routerLink]="['/profile']">Profile</button>
 						</div>
+            <div class="col-sm-4">
+              <button class="btn mb-2 mb-sm-0 mx-1 btn-outline-primary" type="button" [routerLink]="['/submit']">Submit</button>
+            </div>
 					</div>
 				</div>
 			</div>
     </div>
   </div>
 
-  <div class="nav-scroller py-1 mb-2">
+  <div class="nav-scroller py-1 mb-4">
     <nav class="nav d-flex justify-content-center">
       <a class="px-2 px-md-5 text-muted" [routerLink]="['/info']">Info</a>
-      <a class="px-2 px-md-5 text-muted" href="#">Planets</a>
-      <a class="px-2 px-md-5 text-muted" href="#">News</a>
-      <a class="px-2 px-md-5 text-muted" href="#">Forum</a>
+      <a class="px-2 px-md-5 text-muted" [routerLink]="['/planets']">Planets</a>
+      <a class="px-2 px-md-5 text-muted" [routerLink]="['/news']">News</a>
+      <a class="px-2 px-md-5 text-muted" [routerLink]="['/forum']">Forum</a>
     </nav>
   </div>
 

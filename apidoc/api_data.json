@@ -1,5 +1,226 @@
 [
   {
+    "type": "get",
+    "url": "/data/articles?id",
+    "title": "get an article from the database",
+    "name": "articles",
+    "group": "data",
+    "description": "<p>gets an article from the database</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>id number of article</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category",
+            "description": "<p>article category</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>article title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "author",
+            "description": "<p>article author</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "body",
+            "description": "<p>article body</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "ArticleNotFound",
+            "description": "<p>article with id does not exist</p>"
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "Error",
+            "description": "<p>server error</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/data.js",
+    "groupTitle": "data"
+  },
+  {
+    "type": "get",
+    "url": "/data/latestart:num",
+    "title": "get the latest num articles",
+    "name": "latestArticles",
+    "group": "data",
+    "description": "<p>get the latest articles from the database</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "num",
+            "description": "<p>number of articles to get</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>article id number</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "category",
+            "description": "<p>article category</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>article title</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "author",
+            "description": "<p>article author</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "body",
+            "description": "<p>article body</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NoArticles",
+            "description": "<p>articles do not exist</p>"
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "Error",
+            "description": "<p>server error</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/data.js",
+    "groupTitle": "data"
+  },
+  {
+    "type": "get",
+    "url": "/data/stats",
+    "title": "get stats from the database",
+    "name": "stats",
+    "group": "data",
+    "description": "<p>Gets system stats.</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "users",
+            "description": "<p>number of users</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "images",
+            "description": "<p>number of images analyzed</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "confirmed",
+            "description": "<p>number of confirmed exoplanets</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NoStats",
+            "description": "<p>stats do not exist on database</p>"
+          }
+        ],
+        "500": [
+          {
+            "group": "500",
+            "optional": false,
+            "field": "Error",
+            "description": "<p>database error</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/data.js",
+    "groupTitle": "data"
+  },
+  {
     "type": "post",
     "url": "/users/authenticate",
     "title": "authenticate a user",
@@ -69,18 +290,28 @@
     },
     "error": {
       "fields": {
-        "401": [
+        "400": [
           {
-            "group": "401",
+            "group": "400",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>requested username does not belong to any user</p>"
-          },
+            "field": "IncompleteUserObject",
+            "description": "<p>user login information incomplete</p>"
+          }
+        ],
+        "401": [
           {
             "group": "401",
             "optional": false,
             "field": "WrongPassword",
             "description": "<p>incorrect password used</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>requested username does not belong to any user</p>"
           }
         ],
         "500": [

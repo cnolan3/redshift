@@ -82,6 +82,13 @@ export class AuthService {
   }
 
   /**
+   * get user data from local storage
+  **/
+  localUserData() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  /**
    * check if the current user is logged in
   **/
   loggedIn() {

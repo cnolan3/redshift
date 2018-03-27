@@ -71,6 +71,7 @@ export class RegisterLoginComponent implements OnInit {
         this.authService.storeUserData(data.token, data.user);
       });
     }
+
     /// register
     else {
       let user = {

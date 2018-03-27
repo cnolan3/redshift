@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { RegisterLoginComponent } from '../register-login/register-login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,5 +38,6 @@ export class NavbarComponent implements OnInit {
   **/
   logOut() {
     this.authService.logOut();
+    this.router.navigate(['']);
   }
 }
