@@ -1,15 +1,14 @@
 <div class="container">
 	<div class="input-group mb-4">
-		<input type="text" class="form-control" placeholder="search articles" aria-label="Text input with segmented dropdown button">
+    <input type="text" class="form-control" placeholder="search articles" [(ngModel)]="searchVal" (input)="search()" aria-label="Text input with segmented dropdown button">
 		<div class="input-group-append">
-			<button type="button" class="btn btn-outline-dark">Search</button>
-			<button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="sr-only">Toggle Dropdown</span>
+			<button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ searchType }}s
 			</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" (click)="setType(0)">Titles</a>
-				<a class="dropdown-item" (click)="setType(1)">Dates</a>
-				<a class="dropdown-item" (click)="setType(2)">Authors</a>
+				<a class="dropdown-item" (click)="setType('title')">Titles</a>
+				<a class="dropdown-item" (click)="setType('date')">Dates</a>
+				<a class="dropdown-item" (click)="setType('author')">Authors</a>
 			</div>
 		</div>
 	</div>
@@ -26,6 +25,14 @@
         <a [routerLink]="['../article', article.id]">Continue reading</a>
       </div>
       <img class="card-img-right img-fluid d-none d-lg-block" [src]="article.photo" style="width: 500px; max-height: 300px; object-fit: cover;" alt="Card image cap">
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="btn-group" role="group" aria-label="basic">
+      <button class="btn btn-outline-primary" type="button" (click)="changePage(-1)">Previous</button>
+      <button class="btn btn-primary">page {{ curPage }}</button>
+      <button class="btn btn-outline-primary" type="button" (click)="changePage(1)">Next</button>
     </div>
   </div>
 </div>

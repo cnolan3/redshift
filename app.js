@@ -11,8 +11,13 @@ const app = express();
 const users = require('./routes/users');
 const admin = require('./routes/admin');
 const data = require('./routes/data');
+const pId = require('./routes/pId');
+
+const planetId = require('./planetId');
 
 const port = 4000;
+
+//planetId.connect();
 
 // use cors
 app.use(cors());
@@ -36,6 +41,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/admin', admin);
 app.use('/data', data);
+app.use('/pId', pId);
 
 app.disable('etag');
 

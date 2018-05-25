@@ -1,14 +1,30 @@
 <div class="container">
-  <canvas id="myCanvas" width="1000" height="500" style="border: 1px solid #000000;"></canvas>
+  <form>
+    <div class="form-group">
+      <input type="file" name="file" class="form-control-file" id="curve">   
+    </div>
+    <div class="input-group mb-4">
+      <input type="text" class="form-control" placeholder="search known stars" (keydown)="search($event)">
+      <div class="input-group-append">
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ searchType }}
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="setType('name')">Name</a>
+          <a class="dropdown-item" (click)="setType('designation')">Designation</a>
+          <a class="dropdown-item" (click)="setType('hip')">HIP</a>
+          <a class="dropdown-item" (click)="setType('hd')">HD</a>
+          <a class="dropdown-item" (click)="setType('sao')">SAO</a>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="upload()">upload</button>
+  </form>
 
-  <div class="form-group">
-    <label for="submitFile">Choose an image to upload</label>
-    <input type="file" class="form-control-file" id="submitFile" (change)="fileInput($event.target.files)" multiple>
-  </div>
 
-  <div class="btn-group" role="group" aria-label="basic">
-    <button class="btn btn-primary" type="button" (click)="changeImg(-1)">Previous</button>
-    <button class="btn btn-primary" type="button">{{ imgNum + 1 }}</button>
-    <button class="btn btn-primary" type="button" (click)="changeImg(1)">Next</button>
+  <div *ngFor="let star of stars" class="row">
+    <ul>
+      <li>{{ star.name }}: {{ star.desig }}</li>
+    </ul>
   </div>
 </div>

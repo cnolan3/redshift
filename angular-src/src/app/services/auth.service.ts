@@ -100,6 +100,11 @@ export class AuthService {
 
     return !this.jwtHelperService.isTokenExpired(token);
   }
+
+  getToken() {
+    const token = localStorage.getItem('id_token');
+    return token;
+  }
   
   /**
    * log out the current user

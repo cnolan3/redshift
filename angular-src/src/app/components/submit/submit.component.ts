@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-submit',
@@ -6,55 +7,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./submit.component.scss']
 })
 export class SubmitComponent implements OnInit {
-  canvas: any;
-  ctx: any;
-  images: any;
-  curImage: any;
-  width: number;
-  height: number;
-  imgNum: number;
-  tot: number;
+  searchType: String;
+  searchVal: String;
+  stars: any;
 
-  constructor() { }
+  constructor(private dataService: DataService,
+              private el: ElementRef) { }
 
   ngOnInit() {
-    this.imgNum = -1;
-    this.tot = 0;
-    this.width = 1000;
-    this.height = 500;
-    this.canvas = <HTMLCanvasElement> document.getElementById("myCanvas");
-    this.ctx = this.canvas.getContext("2d");
+    this.searchType = 'designation';
+    this.searchVal = ' ';
+
   }
 
-  updateImg(image) {
-    let img = new Image();
-    let url = window.URL;
-    let src = url.createObjectURL(image);
+  search($event) {
+    this.searchVal = $event.target.value;
 
-    img.src = src;
+    this.dataService.searchStar(this.searchVal, this.searchType).subscribe((data) => {
 
-    img.onload = () => {
-      this.ctx.drawImage(img, 0, 0, this.width, this.height);
-      url.revokeObjectURL(src); 
-    }
-   
+      console.log(data);
+
+      this.stars = data.hipstars;
+
+    });
   }
 
-  fileInput(files) {
-    this.images = files;
-    this.tot = files.length;
-    this.imgNum = 0;
-    this.curImage = this.images.item(this.imgNum);
-    this.updateImg(this.curImage);
+  setType(t) {
+    this.searchType = t;
   }
 
-  changeImg(change) {
-    let newNum = this.imgNum + change;
-    if(newNum >= 0 && newNum < this.tot) {
-      this.imgNum = newNum; 
-      this.curImage = this.images.item(newNum);
-      this.updateImg(this.curImage);
+  upload() {
+    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#curve');
+
+    let fileCount: number = inputEl.files.length;
+
+    let formData = new FormData();
+
+    if(fileCount > 0) {
+      formData.append('curve', inputEl.files.item(0));
+
+      this.dataService.uploadFile(formData).subscribe((data) => {
+        console.log(data);
+      });
     }
   }
-
 }

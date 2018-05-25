@@ -39,14 +39,18 @@ router.get('/articles', (req, res, next) => {
 });
 
 /**
- * @api {get} /data/articletitle?title search articles by title
- * @apiName articleTitle
+ * @api {get} /data/search?col&query&num&off search articles
+ * @apiName articleSearch
  * @apiGroup data
  *
- * @apiDescription searches articles by title
+ * @apiDescription searches articles
  *
- * @apiParam {String} title title to search by
+ * @apiParam {String} col   table column to search by
+ * @apiParam {String} query row value to search for, case insensitive
+ * @apiParam {Number} num   number of articles to get
+ * @apiParam {Number} off   search offset
  *
+ * @apiSuccess {Number}   count             number of matched articles
  * @apiSuccess {Object[]} articles          array of articles
  * @apiSuccess {Number}   articles.id       article id number
  * @apiSuccess {String}   articles.category article category
@@ -57,17 +61,23 @@ router.get('/articles', (req, res, next) => {
  * @apiError (404) NoArticles articles do not exist
  * @apiError (500) Error      server error
 **/
-router.get('/articletitle', (req, res, next) => {
-    let qTitle = req.query.title;
-    models.articles.findAll({
-        where: { title: { $contains: qTitle } },
-        attributes: ['id', 'category', 'title', 'date', 'author', 'body', 'photo', 'createdAt']
+router.get('/search', (req, res, next) => {
+    let col = req.query.col;
+    let q = req.query.query;
+    let num = req.query.num;
+    let off = req.query.off;
+    models.articles.findAndCountAll({
+        offset: off,
+        limit: num,
+        where: { [col]: { $ilike: '%' + q + '%' } },
+        attributes: [ 'id', 'category', 'title', 'date', 'author', 'body', 'photo', 'createdAt']
     }).then((data) => {
         if(data)
-            return res.status(200).json({ articles: data });
+            return res.status(200).json({ count: data.count, articles: data.rows });
         else
             return res.status(404).send('NoArticles');
     }).catch((err) => {
+        throw err;
         return res.status(500).send('Error');
     });
 });
